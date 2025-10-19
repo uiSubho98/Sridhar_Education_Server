@@ -1,0 +1,40 @@
+{
+  "name": "sridhar_education_backend",
+  "version": "1.0.0",
+  "description": "Sridhar Education App",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development nodemon server.js",
+    "start": "cross-env NODE_ENV=production node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DevifAI/Sridhar_Education_Backend.git"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.850.0",
+    "@aws-sdk/s3-request-presigner": "^3.850.0",
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "fs": "^0.0.1-security",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.0.0",
+    "multer": "^2.0.2",
+    "nodemailer": "^7.0.5",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "nodemon": "^3.0.1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DevifAI/Sridhar_Education_Backend/issues"
+  },
+  "homepage": "https://github.com/DevifAI/Sridhar_Education_Backend#readme"
+}
