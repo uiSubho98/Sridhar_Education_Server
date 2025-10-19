@@ -82,7 +82,6 @@ export const getCourseDetailsById = async (req, res) => {
   }
 };
 
-
 export const getTopicsByModule = async (req, res) => {
   try {
     const { courseId, subjectId, moduleId } = req.params;
@@ -115,7 +114,7 @@ export const getTopicsByModule = async (req, res) => {
         };
       })
     );
-
+    console.log({ topicsWithUrls });
     res.status(200).json({ data: topicsWithUrls });
   } catch (error) {
     console.error("Error fetching topics:", error);
