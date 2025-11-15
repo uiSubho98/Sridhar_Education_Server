@@ -59,37 +59,37 @@ export const loginUser = async (req, res) => {
     if (!user) return res.status(404).json({ message: "User not found" });
 
     // Device ID check
-    if (
-      !user.deviceId ||
-      user.deviceId.trim().toLowerCase() !== deviceId.trim().toLowerCase()
-    ) {
-      // Lookup the device change request for approval status
-      const deviceRequest = await DeviceChangeRequest.findOne({
-        userId: user._id,
-        newDeviceId: deviceId,
-      }).sort({ createdAt: -1 });
+    // if (
+    //   !user.deviceId ||
+    //   user.deviceId.trim().toLowerCase() !== deviceId.trim().toLowerCase()
+    // ) {
+    //   // Lookup the device change request for approval status
+    //   const deviceRequest = await DeviceChangeRequest.findOne({
+    //     userId: user._id,
+    //     newDeviceId: deviceId,
+    //   }).sort({ createdAt: -1 });
 
-      if (!deviceRequest) {
-        return res.status(403).json({
-          message: "Unauthorized device access. Device ID does not match and no pending device change request found.",
-        });
-      }
+    //   if (!deviceRequest) {
+    //     return res.status(403).json({
+    //       message: "Unauthorized device access. Device ID does not match and no pending device change request found.",
+    //     });
+    //   }
 
-      // If there is a device change request, check if it is approved or pending
-      if (deviceRequest.status === "approved") {
-        // Optionally update user's deviceId to newDeviceId here if approved
-        user.deviceId = deviceId;
-        await user.save();
-      } else if (deviceRequest.status === "pending") {
-        return res.status(403).json({
-          message: "Device change request is pending admin approval.",
-        });
-      } else {
-        return res.status(403).json({
-          message: "Device change request was rejected.",
-        });
-      }
-    }
+    //   // If there is a device change request, check if it is approved or pending
+    //   if (deviceRequest.status === "approved") {
+    //     // Optionally update user's deviceId to newDeviceId here if approved
+    //     user.deviceId = deviceId;
+    //     await user.save();
+    //   } else if (deviceRequest.status === "pending") {
+    //     return res.status(403).json({
+    //       message: "Device change request is pending admin approval.",
+    //     });
+    //   } else {
+    //     return res.status(403).json({
+    //       message: "Device change request was rejected.",
+    //     });
+    //   }
+    // }
 
     // Check password
     const isMatch = await bcrypt.compare(password, user.password);
